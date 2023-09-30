@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_papertrail_alt/flutter_papertrail_alt.dart';
 
-void main() => runApp(new MyApp());
+void main() => runApp(const MyApp());
 
 class MyApp extends StatefulWidget {
+  const MyApp({super.key});
+
   @override
-  _MyAppState createState() => new _MyAppState();
+  _MyAppState createState() => _MyAppState();
 }
 
 class _MyAppState extends State<MyApp> {
@@ -18,17 +20,21 @@ class _MyAppState extends State<MyApp> {
   // Platform messages are asynchronous, so we initialize in an async method.
   Future initPlatformState() async {
     return FlutterPaperTrailAlt.initLogger(
-        hostName: "logs.papertrailapp.com",
+        hostName: "logs2.papertrailapp.com",
         programName: "flutter-test-app",
-        port: 99999,
+        port: 47001,
         machineName: "Pixel 4 example app");
   }
 
   @override
   Widget build(BuildContext context) {
-    return new MaterialApp(
-      home: new Scaffold(
-        floatingActionButton: new FloatingActionButton(
+    return MaterialApp(
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        useMaterial3: true,
+      ),
+      home: Scaffold(
+        floatingActionButton: FloatingActionButton(
           onPressed: () async {
             await FlutterPaperTrailAlt.logError(
                 "I love logging errors on paper trail");
@@ -42,21 +48,22 @@ class _MyAppState extends State<MyApp> {
           tooltip: 'Log to papertrail',
           child: const Icon(Icons.add),
         ),
-        appBar: new AppBar(
+        appBar: AppBar(
           title: const Text('Papertrail logging example'),
+          backgroundColor: Color.fromARGB(39, 212, 0, 255),
         ),
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Text('Press the + button to test logging to Papertrail'),
+              const Text('Press the + button to test logging to Papertrail'),
               TextButton(
-                child: Text('Identify User'),
+                child: const Text('Identify User'),
                 onPressed: () {
                   FlutterPaperTrailAlt.setUserId("JohnDoe");
                 },
               ),
-              Text('Press the + button again after identifying the user'),
+              const Text('Press the + button again after identifying the user'),
             ],
           ),
         ),
