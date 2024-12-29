@@ -2,6 +2,9 @@ group 'com.kuntal.flutterpapertrail'
 version '1.0-SNAPSHOT'
 
 buildscript {
+    ext {
+        agp_version = '8.3.2'
+    }
     ext.kotlin_version = '1.9.0'
     repositories {
         google()
@@ -9,7 +12,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.5.0'
+        classpath "com.android.tools.build:gradle:$agp_version"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
@@ -27,13 +30,13 @@ apply plugin: 'kotlin-android'
 
 android {
     namespace "com.kuntal.flutterpapertrail"
-    compileSdkVersion 28
+    compileSdkVersion 34
 
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
     }
     defaultConfig {
-        minSdkVersion 16
+        minSdkVersion 21
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     lintOptions {
